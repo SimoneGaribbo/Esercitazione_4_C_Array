@@ -21,26 +21,26 @@ bool ImportVectors(const string& inputFilePath,
     return false;
 	}
 	
-	std::string temp;
+	string temp;
+	char separator = ';';
+	getline(fstr, temp, separator);
 	getline(fstr, temp);
-	int pos = temp.find(";");
-	S = std::stod(temp.substr(pos+1, temp.size()));
+	S = stod(temp);
 	
 	
+	getline(fstr, temp, separator);
 	getline(fstr, temp);
-	pos = temp.find(";");
-	n = std::stoi(temp.substr(pos+1, temp.size()));
+	n = stoi(temp);
 	
 	getline(fstr, temp); 
 	
 	w = new double [n];
 	r = new double [n];
 	int i=0;
-	while (getline(fstr, temp)) {
-		pos = temp.find(";");
-		
-		w[i] = std::stod(temp.substr(0, pos));
-		r[i] = std::stod(temp.substr(pos+1, temp.size()));
+	while (getline(fstr, temp, separator)) {
+		w[i] = stod(temp);
+		getline(fstr, temp);
+		r[i] = stod(temp);
 		i++;
 	}
 	return true;
